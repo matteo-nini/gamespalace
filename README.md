@@ -37,5 +37,4 @@ Richiede Node.js, Playwright (Chromium) e ffmpeg.
 
 ## Da verificare prima della pubblicazione
 - Telefono `0587 291514` e indirizzo vengono dal vecchio sito: confermare che siano ancora validi con la nuova gestione.
-- Orari precisi (ora c'è solo "Aperti tutti i giorni").
 - Pubblicità del gioco con vincite in denaro: il Decreto Dignità (art. 9, DL 87/2018) e le linee guida AGCOM limitano fortemente i messaggi promozionali, soprattutto online. Far verificare testi del sito e dei video al concessionario/consulente prima dell'uso.
