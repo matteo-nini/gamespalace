@@ -3,36 +3,34 @@
 <link rel="stylesheet" href="common.css">
 <style>
   .coins{position:absolute;inset:0;z-index:-1;overflow:hidden}
-  .coin{position:absolute;top:-140px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff1b8,#e2b850 45%,#9c6d1c 100%);
+  .coin{position:absolute;top:-140px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3c4,#c9a24a 45%,#9c6d1c 100%);
     box-shadow:inset 0 0 0 6px rgba(156,109,28,.8),inset 0 0 0 10px rgba(255,241,184,.5);animation:fall linear infinite both}
-  .coin::after{content:"€";position:absolute;inset:0;display:grid;place-items:center;font:900 calc(var(--s) * .5)/1 var(--gp-display);color:#9c6d1c}
+  .coin::after{content:"€";position:absolute;inset:0;display:grid;place-items:center;font:600 calc(var(--s) * .55)/1 var(--gp-serif);color:#94702a}
   @keyframes fall{from{transform:translateY(0) rotateY(0deg)}to{transform:translateY(1300px) rotateY(720deg)}}
 
   .panel{position:absolute;left:50%;top:190px;width:1500px;margin-left:-750px;height:560px;border-radius:40px;
-    background:linear-gradient(180deg,rgba(42,20,54,.95),rgba(18,10,28,.95));border:5px solid #e2b850;
-    box-shadow:0 0 0 14px rgba(7,5,11,.7),0 0 120px rgba(226,184,80,.35)}
+    background:linear-gradient(180deg,rgba(74,15,28,.95),rgba(30,8,16,.95));border:5px solid #c9a24a;
+    box-shadow:0 0 0 14px rgba(18,6,10,.7),0 0 120px rgba(201,162,74,.35)}
   .bulbs{position:absolute;inset:-34px;pointer-events:none}
-  .bulbs i{position:absolute;width:22px;height:22px;margin:-11px;border-radius:50%;background:#fff1b8;box-shadow:0 0 18px 6px rgba(255,214,110,.9);animation:bulb .5s steps(1) infinite both}
+  .bulbs i{position:absolute;width:22px;height:22px;margin:-11px;border-radius:50%;background:#fff3c4;box-shadow:0 0 18px 6px rgba(255,214,110,.9);animation:bulb .5s steps(1) infinite both}
   .bulbs i:nth-child(2n){animation-delay:-.25s}
   @keyframes bulb{0%{opacity:1}50%{opacity:.18}}
 
   .digits{position:absolute;left:0;right:0;top:80px;display:flex;justify-content:center;gap:16px}
-  .win{width:170px;height:220px;border-radius:16px;overflow:hidden;position:relative;background:#07050b;border:3px solid rgba(226,184,80,.6);
+  .win{width:170px;height:220px;border-radius:16px;overflow:hidden;position:relative;background:#07050b;border:3px solid rgba(201,162,74,.6);
     box-shadow:inset 0 18px 24px rgba(0,0,0,.8),inset 0 -18px 24px rgba(0,0,0,.8)}
   .win .strip{position:absolute;left:0;right:0;top:0}
-  .win .strip div{height:220px;display:grid;place-items:center;font:900 170px/1 var(--gp-display);color:#fff1b8}
+  .win .strip div{height:220px;display:grid;place-items:center;font:600 170px/1 var(--gp-serif);color:#fff3c4}
   .win .strip div:last-child{background:var(--gp-gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{position:absolute;left:0;right:0;top:360px;text-align:center;font:800 70px/1.1 var(--gp-sans);letter-spacing:.02em}
   .sub2{position:absolute;left:0;right:0;top:460px;text-align:center}
-  .ribbon{position:absolute;left:50%;top:810px;transform:translateX(-50%) rotate(-2deg);padding:24px 70px;background:linear-gradient(180deg,#e0284f,#9e0c2c);border-radius:8px;
-    box-shadow:0 0 0 4px #e2b850;font:900 60px/1 var(--gp-display);color:#fff6dc;white-space:nowrap}
-  .end .crown{width:200px;filter:drop-shadow(0 10px 40px rgba(226,184,80,.6))}
-  .end .t{font-size:170px;margin-top:20px}
-  .end .k{margin-top:36px}
+  .tagline{position:absolute;left:50%;top:810px;transform:translateX(-50%);padding:22px 70px;background:linear-gradient(180deg,#c8173a,#7d0a1f);
+    box-shadow:0 0 0 3px #c9a24a;font:500 60px/1 var(--gp-serif);font-style:italic;color:#fff8e6;white-space:nowrap}
+  .end .k{margin-top:50px}
 </style></head>
 <body data-duration="13">
 <div class="stage">
-  <img class="photo" src="../foto/sala-3.jpg" alt="" onerror="this.remove()">
+  <img class="photo" src="../../site/foto/sala-vlt.jpg" alt="" onerror="this.remove()">
   <div class="vignette"></div>
   <div class="rays"></div>
   <div class="coins" data-in="inFade 0" data-out="8.6"></div>
@@ -44,12 +42,11 @@
       <div class="sub" data-in="inUp 3.4">Jackpot progressivi sulle VLT</div>
       <div class="kicker sub2" data-in="inFade 4.2"><span class="line"></span>Ogni giorno in sala<span class="line"></span></div>
     </div>
-    <div style="position:absolute;inset:0" data-in="inFade 5"><div class="ribbon">Ti aspettiamo da Games Palace!</div></div>
+    <div style="position:absolute;inset:0" data-in="inFade 5"><div class="tagline">Ti aspettiamo da Games Palace</div></div>
   </div>
 
   <div class="center end">
-    <img class="crown" src="../../site/assets/logo-mark.svg" alt="" data-in="inZoom 9.0">
-    <div class="display t" data-in="inUp 9.4"><span class="shine">GAMES PALACE</span></div>
+    <div class="biglogo" data-logo data-in="inZoom 9.0"></div>
     <div class="kicker k" data-in="inFade 10.1">Via del Tiglio 149/F · Calcinaia</div>
   </div>
 </div>

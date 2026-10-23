@@ -19,7 +19,7 @@
   window.addEventListener("scroll", onScroll, { passive: true });
 
   // Comparsa morbida delle sezioni
-  var items = document.querySelectorAll(".section .wrap > *, .card");
+  var items = document.querySelectorAll(".section__head, .gestione__grid > *, .card, .mosaic figure, .dove__grid > *");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -28,16 +28,10 @@
     }, { threshold: 0.12 });
     items.forEach(function (el, i) {
       el.classList.add("reveal");
-      if (el.classList.contains("card")) el.style.transitionDelay = (i % 4) * 90 + "ms";
+      if (el.matches(".card, .mosaic figure")) el.style.transitionDelay = (i % 4) * 90 + "ms";
       io.observe(el);
     });
   }
-
-  // Nasconde la galleria se non ci sono foto in site/foto/
-  window.addEventListener("load", function () {
-    var g = document.getElementById("galleria");
-    if (g && !g.querySelector("figure")) g.remove();
-  });
 
   document.getElementById("year").textContent = new Date().getFullYear();
 })();

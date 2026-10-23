@@ -1,27 +1,39 @@
-/* Games Palace — brand tokens & fonts (condivisi da sito e video) */
-@font-face{font-family:"Cinzel";font-weight:500;font-display:swap;src:url(fonts/cinzel-latin-500-normal.woff2) format("woff2")}
-@font-face{font-family:"Cinzel";font-weight:700;font-display:swap;src:url(fonts/cinzel-latin-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Cinzel";font-weight:900;font-display:swap;src:url(fonts/cinzel-latin-900-normal.woff2) format("woff2")}
+/* Games Palace — identità visiva (condivisa da sito e video)
+   Marchio: cinque stelle oro · "Games" in corsivo · PALACE maiuscolo tra due filetti */
+@font-face{font-family:"Pinyon Script";font-weight:400;font-display:swap;src:url(fonts/pinyon-script-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-weight:400;font-display:swap;src:url(fonts/cormorant-garamond-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-weight:500;font-style:italic;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-italic.woff2) format("woff2")}
 @font-face{font-family:"Montserrat";font-weight:300;font-display:swap;src:url(fonts/montserrat-latin-300-normal.woff2) format("woff2")}
 @font-face{font-family:"Montserrat";font-weight:400;font-display:swap;src:url(fonts/montserrat-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Montserrat";font-weight:600;font-display:swap;src:url(fonts/montserrat-latin-600-normal.woff2) format("woff2")}
 @font-face{font-family:"Montserrat";font-weight:800;font-display:swap;src:url(fonts/montserrat-latin-800-normal.woff2) format("woff2")}
 
 :root{
-  --gp-black:#07050b;
-  --gp-night:#120a1c;
-  --gp-plum:#24122f;
-  --gp-gold:#e2b850;
-  --gp-gold-light:#fff1b8;
-  --gp-gold-dark:#9c6d1c;
-  --gp-ruby:#c8143c;
-  --gp-ivory:#f6efe0;
-  --gp-muted:#b3a8bd;
-  --gp-gold-grad:linear-gradient(180deg,#fff1b8 0%,#f0cf6e 35%,#e2b850 55%,#9c6d1c 100%);
-  --gp-display:"Cinzel",Georgia,serif;
+  --gp-ivory:#f8f3ea;
+  --gp-cream:#efe6d6;
+  --gp-sand:#e2d6c0;
+  --gp-ink:#2a2420;
+  --gp-grey:#7d756c;
+  --gp-red:#b3122e;
+  --gp-red-dark:#7d0a1f;
+  --gp-wine:#1c0a0f;
+  --gp-gold:#c9a24a;
+  --gp-gold-light:#ecd593;
+  --gp-gold-dark:#94702a;
+  --gp-gold-grad:linear-gradient(180deg,#f3dc95 0%,#c9a24a 55%,#94702a 100%);
+  --gp-script:"Pinyon Script",cursive;
+  --gp-serif:"Cormorant Garamond",Georgia,serif;
   --gp-sans:"Montserrat",system-ui,sans-serif;
 }
-.gp-gold-text{
-  background:var(--gp-gold-grad);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
+
+/* Logo: <div class="gp-logo"><img class="gp-logo__stars" src="…/logo-stars.svg" alt=""><span class="gp-logo__games">Games</span><span class="gp-logo__palace">Palace</span></div>
+   Dimensione con font-size sul contenitore; colori con le classi --dark / --light */
+.gp-logo{display:inline-flex;flex-direction:column;align-items:center;line-height:1;--logo-ink:var(--gp-ink);--logo-script:var(--gp-grey)}
+.gp-logo--light{--logo-ink:var(--gp-ivory);--logo-script:#e9e0d2}
+.gp-logo__stars{width:2.3em;height:auto;margin-bottom:.12em}
+.gp-logo__games{font:400 1.25em/1 var(--gp-script);color:var(--logo-script);align-self:flex-start;margin:0 0 -.24em .18em;position:relative;z-index:1}
+.gp-logo__palace{font:500 1em/1 var(--gp-serif);text-transform:uppercase;letter-spacing:.2em;padding:.14em 0 .1em .2em;color:var(--logo-ink);
+  border-top:max(1px,.025em) solid currentColor;border-bottom:max(1px,.025em) solid currentColor}
+.gp-gold-text{background:var(--gp-gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}

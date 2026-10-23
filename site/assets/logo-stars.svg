@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 26" role="img" aria-label="Games Palace">
+  <defs>
+    <linearGradient id="gp-g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3dc95"/><stop offset=".55" stop-color="#c9a24a"/><stop offset="1" stop-color="#94702a"/>
+    </linearGradient>
+    <path id="s" d="M0-10 2.35-3.24 9.51-3.09 3.8 1.24 5.88 8.09 0 4 -5.88 8.09 -3.8 1.24 -9.51-3.09 -2.35-3.24Z"/>
+  </defs>
+  <g fill="url(#gp-g)">
+    <use href="#s" transform="translate(11 15) scale(.85)"/>
+    <use href="#s" transform="translate(37 15) scale(.85)"/>
+    <use href="#s" transform="translate(65 13) scale(1.2)"/>
+    <use href="#s" transform="translate(93 15) scale(.85)"/>
+    <use href="#s" transform="translate(119 15) scale(.85)"/>
+  </g>
+</svg>

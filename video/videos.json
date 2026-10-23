@@ -1,15 +1,53 @@
 {
   "videos": [
-    { "name": "01-nuova-gestione", "scene": "01-nuova-gestione.html" },
-    { "name": "02-sala-vlt-slot", "scene": "02-sala-vlt-slot.html" },
-    { "name": "03-jackpot", "scene": "03-jackpot.html" },
-    { "name": "04-promo-caffe", "scene": "04-promo.html",
-      "params": { "etichetta": "Benvenuto", "titolo": "Il caffè lo offriamo noi", "sotto": "Un piccolo benvenuto dalla nuova gestione", "nota": "Chiedi allo staff" } },
-    { "name": "05-promo-novita", "scene": "04-promo.html",
-      "params": { "etichetta": "In sala", "titolo": "Ogni settimana nuove promozioni", "sotto": "Seguici sui monitor della sala per scoprirle tutte", "nota": "Chiedi allo staff" } }
+    {
+      "name": "01-nuova-gestione",
+      "scene": "01-nuova-gestione.html"
+    },
+    {
+      "name": "06-la-sala",
+      "scene": "06-la-sala.html"
+    },
+    {
+      "name": "02-sala-vlt-slot",
+      "scene": "02-sala-vlt-slot.html"
+    },
+    {
+      "name": "03-jackpot",
+      "scene": "03-jackpot.html"
+    },
+    {
+      "name": "04-promo-caffe",
+      "scene": "04-promo.html",
+      "params": {
+        "etichetta": "Benvenuto",
+        "titolo": "Il caffè lo offriamo noi",
+        "sotto": "Un piccolo benvenuto dalla nuova gestione",
+        "nota": "Chiedi allo staff",
+        "foto": "bar.jpg"
+      }
+    },
+    {
+      "name": "05-promo-novita",
+      "scene": "04-promo.html",
+      "params": {
+        "etichetta": "In sala",
+        "titolo": "Ogni settimana nuove promozioni",
+        "sotto": "Seguici sui monitor della sala per scoprirle tutte",
+        "nota": "Chiedi allo staff",
+        "foto": "corridoio.jpg"
+      }
+    }
   ],
   "loop": {
     "name": "00-loop-completo",
-    "order": ["01-nuova-gestione", "02-sala-vlt-slot", "04-promo-caffe", "03-jackpot", "05-promo-novita"]
+    "order": [
+      "01-nuova-gestione",
+      "06-la-sala",
+      "02-sala-vlt-slot",
+      "04-promo-caffe",
+      "03-jackpot",
+      "05-promo-novita"
+    ]
   }
 }
