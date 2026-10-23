@@ -36,13 +36,17 @@ const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
 const sceneUrl = (job) => pathToFileURL(join(ROOT, "scenes", job.scene)).href + "?" + new URLSearchParams(job.params || {});
 const seek = (ms) => page.evaluate((t) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t; }), ms);
 
-// Immagini statiche (PNG 1920x1080)
-for (const job of stills) {
-  await page.goto(sceneUrl(job), { waitUntil: "load" });
-  await page.evaluate(() => document.fonts.ready);
-  await seek((job.at || 0) * 1000);
-  await page.screenshot({ path: join(OUT, job.name + ".png") });
-  console.log(job.name + ": ok →", join(OUT, job.name + ".png"));
+// Immagini statiche: PNG in 4K (3840x2160), massima qualità per i monitor
+if (stills.length) {
+  const hi = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 2 });
+  for (const job of stills) {
+    await hi.goto(sceneUrl(job), { waitUntil: "load" });
+    await hi.evaluate(() => document.fonts.ready);
+    await hi.evaluate((t) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t; }), (job.at || 0) * 1000);
+    await hi.screenshot({ path: join(OUT, job.name + ".png") });
+    console.log(job.name + ": ok →", join(OUT, job.name + ".png"));
+  }
+  await hi.close();
 }
 
 for (const job of jobs) {

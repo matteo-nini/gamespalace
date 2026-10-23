@@ -26,7 +26,7 @@ I video finiti sono in `video/out/` (MP4 1920×1080, 30 fps, H.264, senza audio)
 | `04-promo-caffe.mp4` | 11 s | Promo "Il caffè lo offriamo noi" |
 | `05-promo-novita.mp4` | 11 s | "Promozioni in sala" |
 
-Immagini statiche per lo sfondo dei monitor (PNG 1920×1080): `sfondo-monitor.png` (logo, indirizzo, orari) e `sfondo-monitor-solo-logo.png`.
+Immagini statiche per lo sfondo dei monitor (PNG 4K, 3840×2160): `sfondo-monitor.png` (logo, "Sala VLT & Slot", orari) e `sfondo-monitor-solo-logo.png`.
 
 Ogni video ha il marchio in alto e la fascia "18+ · gioca responsabilmente" sempre visibile.
 
