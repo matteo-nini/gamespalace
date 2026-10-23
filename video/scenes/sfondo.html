@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Sfondo</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  /* Sfondo statico per i monitor. ?info=0 → solo logo */
+  .bug{display:none}
+  .biglogo .logo{width:900px}
+  .kick{margin-top:60px}
+  .info{margin-top:34px;font:500 44px/1.4 var(--gp-serif);font-style:italic;color:var(--gp-ivory)}
+  .hours{margin-top:36px;display:inline-block;padding:20px 56px;background:var(--gp-red);box-shadow:0 0 0 3px #c9a24a;color:#fff;font:800 30px/1 var(--gp-sans);letter-spacing:.3em;text-transform:uppercase}
+  .frame{position:absolute;inset:40px 40px 84px;border:2px solid rgba(201,162,74,.5)}
+  .frame::before{content:"";position:absolute;inset:12px;border:1px solid rgba(201,162,74,.25)}
+  body.solo-logo .txt{display:none}
+  body.solo-logo .biglogo .logo{width:1000px}
+</style></head>
+<body data-duration="1">
+<div class="stage">
+  <img class="photo" src="../../site/foto/sala-vlt.jpg" alt="">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="sparkles"></div>
+  <div class="frame"></div>
+  <div class="center">
+    <div class="biglogo" data-logo></div>
+    <div class="kicker kick txt"><span class="line"></span>Sala VLT &amp; Slot<span class="line"></span></div>
+    <div class="info txt">Via del Tiglio 149/F · Calcinaia</div>
+    <div class="hours txt">Tutti i giorni · 10:00 – 03:00</div>
+  </div>
+</div>
+<script>if (new URLSearchParams(location.search).get("info") === "0") document.body.classList.add("solo-logo");</script>
+<script src="common.js"></script>
+</body></html>

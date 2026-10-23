@@ -49,5 +49,20 @@
       "03-jackpot",
       "05-promo-novita"
     ]
-  }
+  },
+  "immagini": [
+    {
+      "name": "sfondo-monitor",
+      "scene": "sfondo.html",
+      "at": 0.5
+    },
+    {
+      "name": "sfondo-monitor-solo-logo",
+      "scene": "sfondo.html",
+      "at": 0.5,
+      "params": {
+        "info": "0"
+      }
+    }
+  ]
 }
