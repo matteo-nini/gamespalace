@@ -20,11 +20,11 @@ I video finiti sono in `video/out/` (MP4 1920×1080, 30 fps, H.264, senza audio)
 |---|---|---|
 | `00-loop-completo.mp4` | 78 s | Tutti i video in sequenza, da mettere in loop sui monitor |
 | `01-nuova-gestione.mp4` | 12 s | Logo, "Nuova gestione", indirizzo |
-| `06-la-sala.mp4` | 18 s | Galleria fotografica della sala (VLT, slot, bar, lounge, privé) |
+| `06-la-sala.mp4` | 18 s | Galleria fotografica della sala (accoglienza, VLT, slot, bar, sala) |
 | `02-sala-vlt-slot.mp4` | 13 s | Rulli slot, "Sala VLT & Slot", schede VLT/Slot |
 | `03-jackpot.mp4` | 13 s | Jackpot progressivi sulle VLT |
 | `04-promo-caffe.mp4` | 11 s | Promo "Il caffè lo offriamo noi" |
-| `05-promo-novita.mp4` | 11 s | "Ogni settimana nuove promozioni" |
+| `05-promo-novita.mp4` | 11 s | "Promozioni in sala" |
 
 Ogni video ha il marchio in alto e la fascia "18+ · gioca responsabilmente" sempre visibile.
 

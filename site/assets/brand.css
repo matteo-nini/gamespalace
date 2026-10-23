@@ -1,6 +1,5 @@
 /* Games Palace — identità visiva (condivisa da sito e video)
-   Marchio: cinque stelle oro · "Games" in corsivo · PALACE maiuscolo tra due filetti */
-@font-face{font-family:"Pinyon Script";font-weight:400;font-display:swap;src:url(fonts/pinyon-script-latin-400-normal.woff2) format("woff2")}
+   Logo: assets/logo.svg (sfondi chiari) e assets/logo-light.svg (sfondi scuri) */
 @font-face{font-family:"Cormorant Garamond";font-weight:400;font-display:swap;src:url(fonts/cormorant-garamond-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Cormorant Garamond";font-weight:500;font-display:swap;src:url(fonts/cormorant-garamond-latin-500-normal.woff2) format("woff2")}
 @font-face{font-family:"Cormorant Garamond";font-weight:600;font-display:swap;src:url(fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2")}
@@ -23,17 +22,8 @@
   --gp-gold-light:#ecd593;
   --gp-gold-dark:#94702a;
   --gp-gold-grad:linear-gradient(180deg,#f3dc95 0%,#c9a24a 55%,#94702a 100%);
-  --gp-script:"Pinyon Script",cursive;
   --gp-serif:"Cormorant Garamond",Georgia,serif;
   --gp-sans:"Montserrat",system-ui,sans-serif;
 }
 
-/* Logo: <div class="gp-logo"><img class="gp-logo__stars" src="…/logo-stars.svg" alt=""><span class="gp-logo__games">Games</span><span class="gp-logo__palace">Palace</span></div>
-   Dimensione con font-size sul contenitore; colori con le classi --dark / --light */
-.gp-logo{display:inline-flex;flex-direction:column;align-items:center;line-height:1;--logo-ink:var(--gp-ink);--logo-script:var(--gp-grey)}
-.gp-logo--light{--logo-ink:var(--gp-ivory);--logo-script:#e9e0d2}
-.gp-logo__stars{width:2.3em;height:auto;margin-bottom:.12em}
-.gp-logo__games{font:400 1.25em/1 var(--gp-script);color:var(--logo-script);align-self:flex-start;margin:0 0 -.24em .18em;position:relative;z-index:1}
-.gp-logo__palace{font:500 1em/1 var(--gp-serif);text-transform:uppercase;letter-spacing:.2em;padding:.14em 0 .1em .2em;color:var(--logo-ink);
-  border-top:max(1px,.025em) solid currentColor;border-bottom:max(1px,.025em) solid currentColor}
 .gp-gold-text{background:var(--gp-gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}

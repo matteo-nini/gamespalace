@@ -32,9 +32,9 @@
       "scene": "04-promo.html",
       "params": {
         "etichetta": "In sala",
-        "titolo": "Ogni settimana nuove promozioni",
-        "sotto": "Seguici sui monitor della sala per scoprirle tutte",
-        "nota": "Chiedi allo staff",
+        "titolo": "Promozioni in sala",
+        "sotto": "Iniziative dedicate ai nostri clienti, ogni settimana",
+        "nota": "Informazioni al bar",
         "foto": "corridoio.jpg"
       }
     }

@@ -9,8 +9,8 @@
   var seed = 7;
   window.rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
 
-  var LOGO = '<div class="gp-logo gp-logo--light"><img class="gp-logo__stars" src="../../site/assets/logo-stars.svg" alt=""><span class="gp-logo__games">Games</span><span class="gp-logo__palace">Palace</span></div>';
-  // Segnaposto <div data-logo> → logo ufficiale
+  var LOGO = '<img class="logo" src="../../site/assets/logo-light.svg" alt="">';
+  // Segnaposto <div data-logo> → logo ufficiale (SVG)
   document.querySelectorAll("[data-logo]").forEach(function (el) { el.innerHTML = LOGO; });
 
   // Parametri da URL (?titolo=...&sotto=...) per le scene personalizzabili

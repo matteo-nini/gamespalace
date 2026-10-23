@@ -20,7 +20,8 @@ body{font-family:var(--gp-sans);color:var(--gp-ivory)}
 @keyframes spin{to{transform:rotate(90deg)}}
 
 /* Bug di marca in alto a sinistra */
-.bug{position:absolute;top:40px;left:60px;z-index:10;font-size:30px}
+.bug{position:absolute;top:36px;left:56px;z-index:10}
+.bug .logo{width:170px;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
 
 /* Fascia gioco responsabile (sempre visibile) */
 .legal{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;justify-content:center;gap:22px;z-index:10;
@@ -30,7 +31,6 @@ body{font-family:var(--gp-sans);color:var(--gp-ivory)}
 /* Utilità tipografiche */
 .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .display{font-family:var(--gp-serif);font-weight:600;text-transform:uppercase;letter-spacing:.08em;line-height:1}
-.script{font-family:var(--gp-script);font-weight:400;text-transform:none;letter-spacing:0}
 .shine{background:linear-gradient(100deg,#94702a 0%,#c9a24a 20%,#fff3c4 30%,#c9a24a 40%,#94702a 60%,#c9a24a 80%,#fff3c4 90%,#c9a24a 100%);
   background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
   animation:shine 4s linear infinite}
@@ -60,7 +60,6 @@ body{font-family:var(--gp-sans);color:var(--gp-ivory)}
 @keyframes tw{0%,100%{opacity:0;transform:scale(.2)}50%{opacity:1;transform:scale(1)}}
 
 /* Logo grande per aperture e chiusure */
-.biglogo{font-size:150px;filter:drop-shadow(0 8px 40px rgba(0,0,0,.6))}
-.biglogo .gp-logo__stars{width:2.6em}
+.biglogo .logo{width:820px;display:block;filter:drop-shadow(0 8px 40px rgba(0,0,0,.6))}
 .ribbon{padding:28px 90px;background:linear-gradient(180deg,#c8173a,#7d0a1f);box-shadow:0 0 0 3px #c9a24a,0 0 0 10px rgba(18,6,10,.6),0 0 0 11px rgba(201,162,74,.45),0 40px 90px -20px rgba(179,18,46,.7)}
 .ribbon span{font:600 130px/1 var(--gp-serif);letter-spacing:.1em;text-transform:uppercase;color:#fff8e6}
