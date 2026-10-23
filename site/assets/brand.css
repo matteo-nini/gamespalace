@@ -1,0 +1,27 @@
+/* Games Palace — brand tokens & fonts (condivisi da sito e video) */
+@font-face{font-family:"Cinzel";font-weight:500;font-display:swap;src:url(fonts/cinzel-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Cinzel";font-weight:700;font-display:swap;src:url(fonts/cinzel-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Cinzel";font-weight:900;font-display:swap;src:url(fonts/cinzel-latin-900-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:300;font-display:swap;src:url(fonts/montserrat-latin-300-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:400;font-display:swap;src:url(fonts/montserrat-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:600;font-display:swap;src:url(fonts/montserrat-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Montserrat";font-weight:800;font-display:swap;src:url(fonts/montserrat-latin-800-normal.woff2) format("woff2")}
+
+:root{
+  --gp-black:#07050b;
+  --gp-night:#120a1c;
+  --gp-plum:#24122f;
+  --gp-gold:#e2b850;
+  --gp-gold-light:#fff1b8;
+  --gp-gold-dark:#9c6d1c;
+  --gp-ruby:#c8143c;
+  --gp-ivory:#f6efe0;
+  --gp-muted:#b3a8bd;
+  --gp-gold-grad:linear-gradient(180deg,#fff1b8 0%,#f0cf6e 35%,#e2b850 55%,#9c6d1c 100%);
+  --gp-display:"Cinzel",Georgia,serif;
+  --gp-sans:"Montserrat",system-ui,sans-serif;
+}
+.gp-gold-text{
+  background:var(--gp-gold-grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Promo</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  /* Scena promo personalizzabile: testi da videos.json (parametri etichetta, titolo, sotto, nota) */
+  .tag{display:inline-block;padding:16px 40px;border-radius:999px;background:var(--gp-ruby);font:800 34px/1 var(--gp-sans);letter-spacing:.34em;text-transform:uppercase;
+    box-shadow:0 0 0 3px #e2b850}
+  .title{margin-top:56px;max-width:1600px;font-size:140px;line-height:1.08}
+  .sub{margin-top:50px;font:600 52px/1.35 var(--gp-sans);color:var(--gp-ivory);max-width:1400px}
+  .nota{margin-top:56px;display:inline-block;padding:22px 60px;border-radius:999px;background:var(--gp-gold-grad);color:#2a1a05;font:800 34px/1 var(--gp-sans);letter-spacing:.3em;text-transform:uppercase}
+  .frame{position:absolute;inset:120px 90px 110px;border:3px solid rgba(226,184,80,.45);border-radius:40px;z-index:-1}
+  .frame::before{content:"";position:absolute;inset:14px;border:1px solid rgba(226,184,80,.25);border-radius:30px}
+  .corner{position:absolute;width:90px;margin:-45px}
+  .end .crown{width:200px;filter:drop-shadow(0 10px 40px rgba(226,184,80,.6))}
+  .end .t{font-size:170px;margin-top:20px}
+  .end .k{margin-top:36px}
+</style></head>
+<body data-duration="11">
+<div class="stage">
+  <img class="photo" src="../foto/sala-4.jpg" alt="" onerror="this.remove()">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="sparkles"></div>
+  <div class="frame" data-in="inFade .2" data-out="7.4">
+    <img class="corner" style="left:50%;top:0" src="../../site/assets/logo-mark.svg" alt="">
+  </div>
+
+  <div class="center">
+    <div data-in="inZoom .4" data-out="7.4"><span class="tag" data-param="etichetta">Promo</span></div>
+    <div class="display title" data-in="inUp .9" data-out="7.4"><span class="shine" data-param="titolo">Titolo promo</span></div>
+    <div class="sub" data-in="inUp 1.7" data-out="7.4" data-param="sotto">Descrizione</div>
+    <div data-in="inZoom 2.6" data-out="7.4"><span class="nota" data-param="nota">Chiedi allo staff</span></div>
+  </div>
+
+  <div class="center end">
+    <img class="crown" src="../../site/assets/logo-mark.svg" alt="" data-in="inZoom 7.9">
+    <div class="display t" data-in="inUp 8.3"><span class="shine">GAMES PALACE</span></div>
+    <div class="kicker k" data-in="inFade 8.9">Nuova gestione · Calcinaia</div>
+  </div>
+</div>
+<script src="common.js"></script>
+</body></html>

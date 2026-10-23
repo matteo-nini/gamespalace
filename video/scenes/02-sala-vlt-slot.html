@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Sala VLT & Slot</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .machine{position:absolute;left:50%;top:150px;margin-left:-560px;width:1120px;height:440px;padding:30px;border-radius:36px;
+    background:linear-gradient(180deg,#2a1436,#140a1e);box-shadow:0 0 0 5px #e2b850,0 0 0 12px rgba(7,5,11,.7),0 0 0 14px rgba(226,184,80,.4),0 50px 120px -30px rgba(226,184,80,.45);
+    display:flex;gap:26px}
+  .reel{flex:1;height:380px;border-radius:20px;overflow:hidden;position:relative;
+    background:linear-gradient(180deg,#d9d0c3 0%,#fffaf0 22%,#fffaf0 78%,#d9d0c3 100%);box-shadow:inset 0 14px 30px rgba(0,0,0,.45),inset 0 -14px 30px rgba(0,0,0,.45)}
+  .strip{position:absolute;left:0;right:0;top:0}
+  .sym{height:380px;display:grid;place-items:center}
+  .sym svg,.sym img{width:220px;height:220px}
+  .seven{font:900 260px/1 var(--gp-display);color:#c8143c;text-shadow:0 6px 0 #6d0820}
+  .bar{font:900 92px/1 var(--gp-sans);color:#fff1b8;background:#120a1c;padding:22px 34px;border-radius:14px;border:6px solid #e2b850;letter-spacing:.05em}
+  .payline{position:absolute;left:-40px;right:-40px;top:50%;height:6px;margin-top:-3px;background:#c8143c;box-shadow:0 0 30px 6px rgba(200,20,60,.9);opacity:0;animation:blink .25s steps(2) 3.6s 6 both}
+  @keyframes blink{0%{opacity:0}100%{opacity:1}}
+  .flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 35%,rgba(255,241,184,.85),transparent 60%);opacity:0;animation:flash 1.2s ease-out 3.6s both}
+  @keyframes flash{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+  .title{position:absolute;left:0;right:0;top:650px;text-align:center;font-size:150px}
+  .sub{position:absolute;left:0;right:0;top:845px;text-align:center}
+  .duo{position:absolute;inset:180px 140px 140px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px}
+  .card{border-radius:34px;padding:60px 56px;background:linear-gradient(180deg,rgba(42,20,54,.92),rgba(18,10,28,.92));
+    border:3px solid rgba(226,184,80,.5);box-shadow:0 40px 100px -40px rgba(226,184,80,.5);display:flex;flex-direction:column;justify-content:center}
+  .card h2{margin:0;font:900 96px/1 var(--gp-display)}
+  .card p{margin:30px 0 0;font:600 46px/1.35 var(--gp-sans);color:var(--gp-ivory)}
+  .card p em{font-style:normal;color:var(--gp-gold)}
+  .tag{align-self:flex-start;margin-bottom:34px;padding:12px 26px;border-radius:999px;background:var(--gp-ruby);font:800 26px/1 var(--gp-sans);letter-spacing:.3em}
+</style></head>
+<body data-duration="13">
+<div class="stage">
+  <img class="photo" src="../foto/sala-2.jpg" alt="" onerror="this.remove()">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="sparkles"></div>
+
+  <div class="wrapA" data-in="inFade 0" data-out="7.4" style="position:absolute;inset:0">
+    <div class="machine">
+      <div class="reel"><div class="strip" data-reel="0"></div></div>
+      <div class="reel"><div class="strip" data-reel="1"></div></div>
+      <div class="reel"><div class="strip" data-reel="2"></div></div>
+      <div class="payline"></div>
+      <div class="flash"></div>
+    </div>
+    <div class="display title" data-in="inUp 3.9"><span class="shine">SALA VLT &amp; SLOT</span></div>
+    <div class="kicker sub" data-in="inFade 4.7"><span class="line"></span>Nuova gestione · Calcinaia<span class="line"></span></div>
+  </div>
+
+  <div class="duo">
+    <div class="card" data-in="inLeft 7.9">
+      <span class="tag">VLT</span>
+      <h2><span class="shine">Videolottery</span></h2>
+      <p>Tanti giochi in rete e <em>jackpot progressivi</em></p>
+    </div>
+    <div class="card" data-in="inUp 8.4">
+      <span class="tag">SLOT</span>
+      <h2><span class="shine">Slot</span></h2>
+      <p>Le tue preferite in una sala <em>accogliente</em></p>
+    </div>
+  </div>
+</div>
+<script>
+  // Simboli dei rulli (SVG/testo, nessuna dipendenza esterna)
+  var SYM = {
+    seven: '<div class="seven">7</div>',
+    crown: '<img src="../../site/assets/logo-mark.svg" alt="">',
+    bar: '<div class="bar">BAR</div>',
+    cherry: '<svg viewBox="0 0 100 100"><path d="M50 12 C46 34 34 48 28 62 M50 12 C58 36 66 48 72 60" stroke="#2e7d32" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M50 12 C62 8 74 14 80 22 C68 24 58 20 50 12Z" fill="#43a047"/><circle cx="28" cy="70" r="20" fill="#c8143c"/><circle cx="72" cy="68" r="20" fill="#c8143c"/><circle cx="22" cy="64" r="5" fill="#ff8aa0"/><circle cx="66" cy="62" r="5" fill="#ff8aa0"/></svg>',
+    diamond: '<svg viewBox="0 0 100 100"><path d="M20 38 L35 18 H65 L80 38 L50 86Z" fill="#4fc3f7"/><path d="M20 38 H80 L50 86Z" fill="#0288d1"/><path d="M35 18 L42 38 L50 18 L58 38 L65 18" fill="none" stroke="#e1f5fe" stroke-width="3"/><path d="M42 38 L50 86 L58 38" fill="none" stroke="#b3e5fc" stroke-width="3"/></svg>',
+    star: '<svg viewBox="0 0 100 100"><path d="M50 6l13 28 30 3-23 20 7 30-27-16-27 16 7-30L7 37l30-3z" fill="#e2b850" stroke="#9c6d1c" stroke-width="4" stroke-linejoin="round"/></svg>'
+  };
+  var order = ["seven", "cherry", "bar", "diamond", "star", "crown"];
+  var H = 380, N = 24;
+  document.querySelectorAll("[data-reel]").forEach(function (strip) {
+    var r = Number(strip.dataset.reel), html = "";
+    for (var i = 0; i < N; i++) html += '<div class="sym">' + SYM[i === N - 1 ? "crown" : order[(i * 5 + r * 2) % order.length]] + "</div>";
+    strip.innerHTML = html;
+    strip.animate(
+      [{ transform: "translateY(0)", filter: "blur(0)" }, { filter: "blur(3px)", offset: 0.2 }, { filter: "blur(2px)", offset: 0.75 },
+       { transform: "translateY(" + -(N - 1) * H + "px)", filter: "blur(0)" }],
+      { duration: 2300 + r * 450, delay: 400, easing: "cubic-bezier(.3,.05,.2,1.02)", fill: "both" });
+  });
+</script>
+<script src="common.js"></script>
+</body></html>

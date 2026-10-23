@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Nuova gestione</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .crown{width:230px;filter:drop-shadow(0 10px 40px rgba(226,184,80,.6))}
+  .title{font-size:190px;margin-top:20px}
+  .kick{margin-top:34px}
+  .ribbon{padding:30px 90px;background:linear-gradient(180deg,#e0284f,#9e0c2c);border-radius:8px;
+    box-shadow:0 0 0 4px #e2b850,0 0 0 10px rgba(7,5,11,.6),0 0 0 12px rgba(226,184,80,.5),0 40px 90px -20px rgba(200,20,60,.7)}
+  .ribbon span{font:900 150px/1 var(--gp-display);letter-spacing:.06em;color:#fff6dc;text-shadow:0 4px 0 #6d0820}
+  .sub{margin-top:70px;font:600 52px/1.3 var(--gp-sans);color:var(--gp-ivory);letter-spacing:.04em}
+  .sub em{font-style:normal;color:var(--gp-gold)}
+  .wait{font-size:150px}
+  .addr{margin-top:46px;font:600 46px/1.4 var(--gp-sans);color:var(--gp-ivory)}
+  .addr small{display:block;font-size:34px;color:var(--gp-muted);font-weight:400;margin-top:8px}
+  .open{margin-top:44px;display:inline-block;padding:20px 54px;border-radius:999px;background:var(--gp-gold-grad);color:#2a1a05;font:800 34px/1 var(--gp-sans);letter-spacing:.3em;text-transform:uppercase}
+</style></head>
+<body data-duration="12">
+<div class="stage">
+  <img class="photo" src="../foto/sala-1.jpg" alt="" onerror="this.remove()">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="sparkles"></div>
+
+  <div class="center">
+    <img class="crown" src="../../site/assets/logo-mark.svg" alt="" data-in="inZoom .2" data-out="3.6">
+    <div class="display title" data-in="inUp .7" data-out="3.6"><span class="shine">GAMES PALACE</span></div>
+    <div class="kicker kick" data-in="inFade 1.5" data-out="3.6"><span class="line"></span>Sala VLT &amp; Slot<span class="line"></span></div>
+  </div>
+
+  <div class="center">
+    <div class="ribbon" data-in="inStamp 4.1" data-out="7.6"><span>NUOVA GESTIONE</span></div>
+    <div class="sub" data-in="inUp 4.9" data-out="7.6">Nuovo staff · <em>nuova energia</em> · la stessa passione</div>
+  </div>
+
+  <div class="center">
+    <div class="display wait" data-in="inUp 8.0"><span class="shine">TI ASPETTIAMO</span></div>
+    <div class="addr" data-in="inUp 8.6">Via del Tiglio 149/F · Calcinaia<small>Centro Torretta White</small></div>
+    <div class="open" data-in="inZoom 9.3">Aperti tutti i giorni</div>
+  </div>
+</div>
+<script src="common.js"></script>
+</body></html>

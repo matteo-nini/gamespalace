@@ -1,0 +1,62 @@
+@import url(../../site/assets/brand.css);
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#07050b}
+body{font-family:var(--gp-sans);color:var(--gp-ivory)}
+.stage{position:absolute;inset:0;overflow:hidden;isolation:isolate;
+  background:radial-gradient(ellipse 75% 70% at 50% 45%,#3a1a48 0%,#120a1c 50%,#07050b 85%)}
+
+/* Foto opzionale di sfondo (video/foto/*.jpg): se manca viene rimossa */
+.photo{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;opacity:.32;
+  filter:saturate(.75) contrast(1.1);animation:kb 14s linear both;z-index:-2}
+.photo ~ .vignette{background:radial-gradient(ellipse at center,rgba(7,5,11,.35) 0%,rgba(7,5,11,.92) 75%)}
+.vignette{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,transparent 40%,rgba(7,5,11,.85) 100%)}
+@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.1) translate(-1.5%,-1%)}}
+
+.rays{position:absolute;left:50%;top:46%;width:3200px;height:3200px;margin:-1600px 0 0 -1600px;z-index:-1;
+  background:repeating-conic-gradient(from 0deg,rgba(226,184,80,.09) 0deg 4deg,transparent 4deg 15deg);
+  -webkit-mask:radial-gradient(circle,#000 0%,transparent 50%);mask:radial-gradient(circle,#000 0%,transparent 50%);
+  animation:spin 40s linear both}
+@keyframes spin{to{transform:rotate(90deg)}}
+
+/* Bug di marca in alto a sinistra */
+.bug{position:absolute;top:44px;left:56px;display:flex;align-items:center;gap:14px;z-index:10}
+.bug img{width:62px}
+.bug span{font:700 30px/1 var(--gp-display);letter-spacing:.08em;color:var(--gp-ivory)}
+.bug small{display:block;margin-top:6px;font:600 13px/1 var(--gp-sans);letter-spacing:.4em;color:var(--gp-gold)}
+
+/* Fascia gioco responsabile (sempre visibile) */
+.legal{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;justify-content:center;gap:22px;z-index:10;
+  background:linear-gradient(180deg,rgba(7,5,11,0),rgba(7,5,11,.9) 40%);font:600 22px/1 var(--gp-sans);letter-spacing:.05em;color:#d9cfe2}
+.legal b{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:3px solid var(--gp-ruby);font-weight:800;font-size:16px;color:#fff}
+
+/* Utilità tipografiche */
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.display{font-family:var(--gp-display);font-weight:900;letter-spacing:.04em;line-height:1}
+.shine{background:linear-gradient(100deg,#9c6d1c 0%,#e2b850 20%,#fff1b8 30%,#e2b850 40%,#9c6d1c 60%,#e2b850 80%,#fff1b8 90%,#e2b850 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 4s linear infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-50% 0}}
+.kicker{font:600 34px/1.3 var(--gp-sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gp-gold)}
+.line{display:inline-block;width:80px;height:2px;background:var(--gp-gold);vertical-align:middle;margin:0 26px;opacity:.7}
+
+/* Entrate/uscite riutilizzabili: usare animation-delay inline */
+.in-up{animation:inUp .9s cubic-bezier(.2,.8,.2,1) both}
+.in-zoom{animation:inZoom 1s cubic-bezier(.2,1.4,.4,1) both}
+.in-fade{animation:inFade .8s ease both}
+.out{animation-name:out;animation-duration:.6s;animation-fill-mode:both;animation-timing-function:ease-in}
+@keyframes inUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes inZoom{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes inStamp{from{opacity:0;transform:scale(2.4) rotate(-6deg)}to{opacity:1;transform:rotate(-3deg)}}
+@keyframes inLeft{from{opacity:0;transform:translateX(-120px)}to{opacity:1;transform:none}}
+@keyframes inFade{from{opacity:0}to{opacity:1}}
+@keyframes out{from{opacity:1;transform:none}to{opacity:0;transform:scale(1.06)}}
+
+/* Dissolvenza a nero di inizio/fine scena (durata impostata da data-duration) */
+.fadebox{position:absolute;inset:0;background:#07050b;z-index:20;pointer-events:none;animation:fadeIO var(--dur,12s) linear both}
+@keyframes fadeIO{0%{opacity:1}4%{opacity:0}95%{opacity:0}100%{opacity:1}}
+
+/* Scintille */
+.sparkles{position:absolute;inset:0;z-index:-1}
+.sparkles i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff1b8;box-shadow:0 0 12px 3px rgba(226,184,80,.8);animation:tw 2.4s ease-in-out infinite both}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.2)}50%{opacity:1;transform:scale(1)}}
