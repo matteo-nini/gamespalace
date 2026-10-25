@@ -8,11 +8,12 @@
   .c-points{margin-top:36px}
   .c-note{margin-top:40px}
   /* Layout "foto" */
-  .split{position:absolute;inset:0;display:flex;align-items:center;gap:70px}
-  .pic{flex:none;width:820px;height:600px;position:relative}
-  .pic::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:2px solid rgba(201,162,74,.7)}
-  .pic div{position:absolute;inset:0;overflow:hidden;box-shadow:0 30px 70px -20px rgba(0,0,0,.8)}
-  .pic img{width:100%;height:100%;object-fit:cover}
+  /* Layout "foto": foto a tutta altezza a sinistra che sfuma nel bordeaux (viraggio caldo), testo a destra */
+  .bleed{position:absolute;left:0;top:0;width:1150px;height:870px;z-index:-1;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,#000 45%,transparent 100%);mask-image:linear-gradient(90deg,#000 45%,transparent 100%)}
+  .bleed img{width:100%;height:100%;object-fit:cover;filter:sepia(.35) saturate(1.1) brightness(.78) contrast(1.05)}
+  .bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,18,32,.35),rgba(42,10,18,.25))}
+  .split{position:absolute;inset:0 0 0 890px;display:flex;align-items:center}
   .txt{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
   .txt .t-title{margin-top:28px;font-size:104px;width:100%}
   .txt .t-sub{margin-top:20px;width:100%;font-size:46px}
@@ -41,14 +42,15 @@
   var C = document.querySelector(".content");
 
   if (d.layout === "foto") {
-    var h = '<div class="split"><div class="pic" data-in="inLeft 0.3"><div><img src="../../site/foto/' + d.foto + '" alt=""></div></div><div class="txt">';
+    document.querySelector(".stage").insertAdjacentHTML("afterbegin", '<div class="bleed" data-in="inFade 0"><img src="../../site/foto/' + d.foto + '" alt=""></div>');
+    var h = '<div class="split"><div class="txt">';
     if (d.tag) add('<span class="t-tag" @>' + esc(d.tag) + "</span>", "inRight", 0.4);
     add('<div class="t-title" data-fit="230" @><span class="shine">' + esc(d.titolo) + "</span></div>", "inRight", 0.6);
     if (d.sotto) add('<div class="t-sub" data-fit="130" @>' + esc(d.sotto) + "</div>", "inRight", 0.5);
     if (d.punti) { var li = ""; d.punti.forEach(function (p, i) { li += '<li data-in="inRight ' + (t + i * 0.35).toFixed(2) + '">' + esc(p) + "</li>"; }); parts.push('<ul class="t-points">' + li + "</ul>"); t += d.punti.length * 0.35 + 0.2; }
     if (d.nota) add('<span class="t-note" @>' + esc(d.nota) + "</span>", "inUp", 0);
     C.innerHTML = h + parts.join("") + "</div></div>";
-    document.querySelector(".pic img").animate([{ transform: "scale(1.02)" }, { transform: "scale(1.14)" }], { duration: 10000, fill: "both" });
+    document.querySelector(".bleed img").animate([{ transform: "scale(1.02)" }, { transform: "scale(1.12)" }], { duration: 10000, fill: "both" });
   } else {
     if (d.tag) add('<span class="t-tag" @>' + esc(d.tag) + "</span>", "inZoom", 0.4);
     add('<div class="t-title c-title" data-fit="240" @><span class="shine">' + esc(d.titolo) + "</span></div>", "inUp", 0.6);
