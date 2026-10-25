@@ -1,65 +1,88 @@
 @import url(../../site/assets/brand.css);
 
+/* Formato 1920x1080. Area sicura TV (title safe 5%): x 96–1824, y 54–1026.
+   Tutti i testi stanno dentro quest'area: il renderer lo verifica fotogramma per fotogramma. */
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#12060a}
 body{font-family:var(--gp-sans);color:var(--gp-ivory)}
 .stage{position:absolute;inset:0;overflow:hidden;isolation:isolate;
   background:radial-gradient(ellipse 75% 70% at 50% 45%,#5a1220 0%,#2a0a12 50%,#12060a 85%)}
 
-/* Foto opzionale di sfondo (video/foto/*.jpg): se manca viene rimossa */
+/* ---------- Sfondo ---------- */
 .photo{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;opacity:.5;
-  filter:saturate(.9) contrast(1.05) blur(4px);animation:kb 14s linear both;z-index:-2}
+  filter:saturate(.9) contrast(1.05) blur(4px);animation:kb var(--dur,12s) linear both;z-index:-3}
 .photo ~ .vignette{background:radial-gradient(ellipse at center,rgba(42,10,18,.55) 0%,rgba(18,6,10,.93) 78%)}
-.vignette{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,transparent 40%,rgba(18,6,10,.85) 100%)}
+.vignette{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at center,transparent 40%,rgba(18,6,10,.85) 100%)}
 @keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.1) translate(-1.5%,-1%)}}
-
 .rays{position:absolute;left:50%;top:46%;width:3200px;height:3200px;margin:-1600px 0 0 -1600px;z-index:-1;
   background:repeating-conic-gradient(from 0deg,rgba(236,213,147,.08) 0deg 4deg,transparent 4deg 15deg);
   -webkit-mask:radial-gradient(circle,#000 0%,transparent 50%);mask:radial-gradient(circle,#000 0%,transparent 50%);
   animation:spin 40s linear both}
 @keyframes spin{to{transform:rotate(90deg)}}
-
-/* Bug di marca in alto a sinistra */
-.bug{position:absolute;top:36px;left:56px;z-index:10}
-.bug .logo{width:170px;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
-
-/* Fascia gioco responsabile (sempre visibile) */
-.legal{position:absolute;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;justify-content:center;gap:22px;z-index:10;
-  background:linear-gradient(180deg,rgba(18,6,10,0),rgba(18,6,10,.92) 40%);font:600 22px/1 var(--gp-sans);letter-spacing:.05em;color:#d9cfe2}
-.legal b{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:3px solid var(--gp-ruby);font-weight:800;font-size:16px;color:#fff}
-
-/* Utilità tipografiche */
-.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.display{font-family:var(--gp-serif);font-weight:600;text-transform:uppercase;letter-spacing:.08em;line-height:1}
-.shine{background:linear-gradient(100deg,#94702a 0%,#c9a24a 20%,#fff3c4 30%,#c9a24a 40%,#94702a 60%,#c9a24a 80%,#fff3c4 90%,#c9a24a 100%);
-  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:shine 4s linear infinite}
-@keyframes shine{from{background-position:100% 0}to{background-position:-50% 0}}
-.kicker{font:600 34px/1.3 var(--gp-sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gp-gold-light)}
-.line{display:inline-block;width:80px;height:2px;background:var(--gp-gold);vertical-align:middle;margin:0 26px;opacity:.7}
-
-/* Entrate/uscite riutilizzabili: usare animation-delay inline */
-.in-up{animation:inUp .9s cubic-bezier(.2,.8,.2,1) both}
-.in-zoom{animation:inZoom 1s cubic-bezier(.2,1.4,.4,1) both}
-.in-fade{animation:inFade .8s ease both}
-.out{animation-name:out;animation-duration:.6s;animation-fill-mode:both;animation-timing-function:ease-in}
-@keyframes inUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
-@keyframes inZoom{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
-@keyframes inStamp{from{opacity:0;transform:scale(2.4) rotate(-6deg)}to{opacity:1;transform:rotate(-3deg)}}
-@keyframes inLeft{from{opacity:0;transform:translateX(-120px)}to{opacity:1;transform:none}}
-@keyframes inFade{from{opacity:0}to{opacity:1}}
-@keyframes out{from{opacity:1;transform:none}to{opacity:0;transform:scale(1.06)}}
-
-/* Dissolvenza a nero di inizio/fine scena (durata impostata da data-duration) */
-.fadebox{position:absolute;inset:0;background:#12060a;z-index:20;pointer-events:none;animation:fadeIO var(--dur,12s) linear both}
-@keyframes fadeIO{0%{opacity:1}4%{opacity:0}95%{opacity:0}100%{opacity:1}}
-
-/* Scintille */
 .sparkles{position:absolute;inset:0;z-index:-1}
 .sparkles i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff3c4;box-shadow:0 0 12px 3px rgba(201,162,74,.8);animation:tw 2.4s ease-in-out infinite both}
 @keyframes tw{0%,100%{opacity:0;transform:scale(.2)}50%{opacity:1;transform:scale(1)}}
 
-/* Logo grande per aperture e chiusure */
+/* Velo scuro dietro l'intestazione, per la leggibilità su qualunque sfondo */
+.topshade{position:absolute;left:0;right:0;top:0;height:220px;z-index:29;background:linear-gradient(180deg,rgba(18,6,10,.9) 0%,rgba(18,6,10,.6) 60%,transparent 100%)}
+
+/* ---------- Cornice fissa (uguale in tutte le scene: i video si montano in continuità) ---------- */
+.topbar{position:absolute;left:96px;right:96px;top:54px;height:104px;display:flex;align-items:center;justify-content:space-between;z-index:30}
+.topbar .logo{height:104px;width:auto;display:block;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
+.topbar__title{text-align:right}
+.topbar__title b{display:block;font:600 54px/1 var(--gp-serif);letter-spacing:.14em;text-transform:uppercase;color:var(--gp-gold-light);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.topbar__title small{display:block;margin-top:10px;font:800 20px/1 var(--gp-sans);letter-spacing:.42em;text-transform:uppercase;color:#fff}
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:-16px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,74,.7),transparent)}
+
+.infobar{position:absolute;left:0;right:0;top:868px;height:116px;z-index:30;
+  background:linear-gradient(180deg,#c3173a,#8a0c24);box-shadow:0 -2px 0 #c9a24a,0 2px 0 #c9a24a,0 -20px 50px rgba(0,0,0,.45)}
+.infobar__in{position:absolute;left:96px;right:96px;top:0;bottom:0;display:flex;align-items:center;gap:44px}
+.infobar__hours small,.infobar__addr small{display:block;font:800 20px/1 var(--gp-sans);letter-spacing:.34em;text-transform:uppercase;color:var(--gp-gold-light);margin-bottom:10px}
+.infobar__hours b{display:block;font:800 58px/1 var(--gp-sans);letter-spacing:.02em;color:#fff;white-space:nowrap}
+.infobar__sep{width:2px;align-self:stretch;margin:20px 0;background:rgba(236,213,147,.55)}
+.infobar__addr{flex:1;min-width:0}
+.infobar__addr b{display:block;font:600 40px/1.1 var(--gp-sans);color:#fff;white-space:nowrap}
+.infobar__tel{white-space:nowrap}
+.infobar__tel small{display:block;font:800 20px/1 var(--gp-sans);letter-spacing:.34em;text-transform:uppercase;color:var(--gp-gold-light);margin-bottom:10px}
+.infobar__tel b{display:block;font:600 40px/1.1 var(--gp-sans);color:#fff}
+
+.legal{position:absolute;left:96px;right:96px;top:994px;height:32px;display:flex;align-items:center;justify-content:center;gap:16px;z-index:30;
+  font:600 19px/1 var(--gp-sans);letter-spacing:.03em;color:#e3d8cc;white-space:nowrap}
+.legal b{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;border:2px solid #e0284f;font-weight:800;font-size:12px;color:#fff;flex:none}
+
+/* Dissolvenza del solo contenuto: la cornice resta fissa */
+.fadebox{position:absolute;inset:0;background:#12060a;z-index:25;pointer-events:none;animation:fadeIO var(--dur,12s) linear both}
+@keyframes fadeIO{0%{opacity:1}5%{opacity:0}94%{opacity:0}100%{opacity:1}}
+
+/* ---------- Area contenuti: x 96–1824, y 190–850 ---------- */
+.content{position:absolute;left:96px;right:96px;top:190px;height:660px}
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+
+/* Testi: mai parole spezzate, a capo bilanciato; [data-fit] riduce il corpo finché il testo entra */
+.content *{overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.t-title{font:600 112px/1.04 var(--gp-serif);text-transform:uppercase;letter-spacing:.05em;text-wrap:balance;max-width:100%}
+.t-sub{font:500 54px/1.25 var(--gp-serif);font-style:italic;color:var(--gp-ivory);text-wrap:balance;max-width:100%}
+.t-tag{display:inline-block;padding:14px 36px;background:var(--gp-red);box-shadow:0 0 0 3px #c9a24a;font:800 28px/1 var(--gp-sans);letter-spacing:.32em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.t-note{display:inline-block;padding:20px 52px;background:var(--gp-gold-grad);color:#2a1a05;font:800 30px/1 var(--gp-sans);letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
+.t-points{list-style:none;margin:0;padding:0;display:grid;gap:22px;text-align:left}
+.t-points li{display:flex;align-items:center;gap:22px;font:600 44px/1.15 var(--gp-sans);color:#fff}
+.t-points li::before{content:"";flex:none;width:30px;height:30px;background:var(--gp-gold-grad);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+
+.shine{background:linear-gradient(100deg,#94702a 0%,#c9a24a 20%,#fff3c4 30%,#c9a24a 40%,#94702a 60%,#c9a24a 80%,#fff3c4 90%,#c9a24a 100%);
+  background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;animation:shine 4s linear infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-50% 0}}
+
+/* Usati dallo sfondo statico */
+.display{font-family:var(--gp-serif);font-weight:600;text-transform:uppercase;letter-spacing:.08em;line-height:1}
+.kicker{font:600 34px/1.3 var(--gp-sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gp-gold-light)}
+.line{display:inline-block;width:80px;height:2px;background:var(--gp-gold);vertical-align:middle;margin:0 26px;opacity:.7}
 .biglogo .logo{width:820px;display:block;filter:drop-shadow(0 8px 40px rgba(0,0,0,.6))}
-.ribbon{padding:28px 90px;background:linear-gradient(180deg,#c8173a,#7d0a1f);box-shadow:0 0 0 3px #c9a24a,0 0 0 10px rgba(18,6,10,.6),0 0 0 11px rgba(201,162,74,.45),0 40px 90px -20px rgba(179,18,46,.7)}
-.ribbon span{font:600 130px/1 var(--gp-serif);letter-spacing:.1em;text-transform:uppercase;color:#fff8e6}
+
+/* ---------- Entrate / uscite (data-in="inUp 1.2" · data-out="8.4") ---------- */
+@keyframes inUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes inZoom{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes inLeft{from{opacity:0;transform:translateX(-80px)}to{opacity:1;transform:none}}
+@keyframes inRight{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:none}}
+@keyframes inFade{from{opacity:0}to{opacity:1}}
+@keyframes out{from{opacity:1}to{opacity:0}}

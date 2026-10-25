@@ -14,28 +14,35 @@ Sito statico (HTML/CSS/JS, nessuna dipendenza, font inclusi in locale): si pubbl
 - Testi, telefono e orari sono in `site/index.html`.
 
 ## Video — `video/`
-I video finiti sono in `video/out/` (MP4 1920×1080, 30 fps, H.264, senza audio):
+Tutti i video sono MP4 1920×1080, 30 fps, H.264, senza audio.
 
-| File | Durata | Messaggio |
-|---|---|---|
-| `00-loop-completo.mp4` | 78 s | Tutti i video in sequenza, da mettere in loop sui monitor |
-| `01-nuova-gestione.mp4` | 12 s | Logo, "Nuova gestione", indirizzo |
-| `06-la-sala.mp4` | 18 s | Galleria fotografica della sala (accoglienza, VLT, slot, bar, sala) |
-| `02-sala-vlt-slot.mp4` | 13 s | Rulli slot, "Sala VLT & Slot", schede VLT/Slot |
-| `03-jackpot.mp4` | 13 s | Jackpot progressivi sulle VLT |
-| `04-promo-caffe.mp4` | 11 s | Promo "Il caffè lo offriamo noi" |
-| `05-promo-novita.mp4` | 11 s | "Promozioni in sala" |
+### Canali per le TV — `video/out/TV-1.mp4` … `TV-4.mp4`
+Quattro montaggi diversi (circa 1 minuto e 45 secondi ciascuno) da mettere **in loop**, uno per televisore:
+le TV vicine non mostrano mai la stessa cosa nello stesso momento. Ogni canale contiene sempre orari,
+informazioni e il messaggio di gioco responsabile.
 
-Immagini statiche per lo sfondo dei monitor (PNG 4K, 3840×2160): `sfondo-monitor.png` (logo, "Sala VLT & Slot", orari) e `sfondo-monitor-solo-logo.png`.
+In ogni fotogramma restano sempre visibili:
+- in alto: logo e **Sala VLT & Slot · Nuova gestione**;
+- fascia rossa: **Tutti i giorni 10:00 – 03:00**, indirizzo, telefono;
+- avvertenze 18+ / gioco responsabile / Telefono Verde.
 
-Ogni video ha il marchio in alto e la fascia "18+ · gioca responsabilmente" sempre visibile.
+Tutti i testi stanno nell'area sicura delle TV (5% dai bordi, così l'overscan non taglia nulla) e non
+vanno mai a capo spezzando le parole: il renderer lo controlla su ogni scena e si ferma se trova un testo tagliato.
 
-### Rigenerare / creare nuove promo
-Richiede Node.js, Playwright (Chromium) e ffmpeg.
+### Scene singole — `video/out/scene/`
+apertura · nuova-gestione · orari · sala-vlt-slot (rulli) · jackpot · galleria · vlt · slot · bar ·
+promo-caffe · promozioni · aperitivo · mattino · notte · dove-siamo · accoglienza · gioco-responsabile
 
-1. Per una nuova promo aggiungi una voce in `video/videos.json` usando la scena `04-promo.html`
-   con i testi `etichetta`, `titolo`, `sotto`, `nota` e la foto di sfondo `foto` (un file di `site/foto/`).
-2. `cd video && node render.mjs` (oppure `node render.mjs promo` per rifare solo quelli con "promo" nel nome).
+### Immagini statiche — `video/out/`
+`sfondo-monitor.png` (logo, Sala VLT & Slot, orari) e `sfondo-monitor-solo-logo.png`, in 4K (3840×2160).
+
+### Modificare testi, promo e canali
+- **Testi e info** (orari, indirizzo, telefono, testi di ogni scheda): `video/scenes/contenuti.js`.
+- **Nuova promo**: aggiungi una scheda in `contenuti.js` (layout `centro` o `foto`) e una riga in
+  `video/videos.json` → `scene`, poi inseriscila in uno o più `canali`.
+- **Ordine dei canali TV**: `video/videos.json` → `canali`.
+- Rigenera con `cd video && node render.mjs` (Node.js, Playwright/Chromium e ffmpeg).
+  `node render.mjs canali` rimonta solo i canali senza rifare le scene.
 
 ## Da verificare prima della pubblicazione
 - Telefono `0587 291514` e indirizzo vengono dal vecchio sito: confermare che siano ancora validi con la nuova gestione.

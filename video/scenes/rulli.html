@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Sala VLT & Slot</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .machine{position:absolute;left:50%;top:0;margin-left:-480px;width:960px;height:370px;padding:26px;border-radius:30px;
+    background:linear-gradient(180deg,#4a0f1c,#1e0810);box-shadow:0 0 0 5px #c9a24a,0 0 0 12px rgba(18,6,10,.7),0 0 0 14px rgba(201,162,74,.4),0 50px 120px -30px rgba(201,162,74,.45);
+    display:flex;gap:22px}
+  .reel{flex:1;height:318px;border-radius:18px;overflow:hidden;position:relative;
+    background:linear-gradient(180deg,#d9d0c3 0%,#fffaf0 22%,#fffaf0 78%,#d9d0c3 100%);box-shadow:inset 0 14px 30px rgba(0,0,0,.45),inset 0 -14px 30px rgba(0,0,0,.45)}
+  .strip{position:absolute;left:0;right:0;top:0}
+  .sym{height:318px;display:grid;place-items:center}
+  .sym svg{width:190px;height:190px}
+  .seven{font:600 230px/1 var(--gp-serif);color:#b3122e;text-shadow:0 6px 0 #6d0820}
+  .bar{font:800 78px/1 var(--gp-sans);color:#fff3c4;background:#1e0810;padding:20px 30px;border-radius:12px;border:6px solid #c9a24a}
+  .payline{position:absolute;left:-30px;right:-30px;top:50%;height:6px;margin-top:-3px;background:#e0284f;box-shadow:0 0 30px 6px rgba(224,40,79,.9);opacity:0;animation:blink .25s steps(2) 3.4s 6 both}
+  @keyframes blink{0%{opacity:0}100%{opacity:1}}
+  .flash{position:absolute;inset:0;border-radius:30px;background:radial-gradient(circle at 50% 50%,rgba(255,243,196,.8),transparent 60%);opacity:0;animation:flash 1.2s ease-out 3.4s both}
+  @keyframes flash{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+  .title{position:absolute;left:0;right:0;top:410px;text-align:center;font-size:124px}
+  .sub{position:absolute;left:0;right:0;top:568px;text-align:center}
+</style></head>
+<body data-duration="10" data-manual>
+<div class="stage">
+  <img class="photo" src="../../site/foto/slot.jpg" alt="">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="sparkles"></div>
+  <div class="content">
+    <div class="machine" data-in="inFade .2" data-nocheck>
+      <div class="reel"><div class="strip" data-reel="0"></div></div>
+      <div class="reel"><div class="strip" data-reel="1"></div></div>
+      <div class="reel"><div class="strip" data-reel="2"></div></div>
+      <div class="payline"></div>
+      <div class="flash"></div>
+    </div>
+    <div class="t-title title" data-fit="140" data-in="inUp 3.6"><span class="shine">Sala VLT &amp; Slot</span></div>
+    <div class="t-sub sub" data-fit="70" data-in="inUp 4.3">Videolottery · Slot · Jackpot progressivi</div>
+  </div>
+</div>
+<script src="contenuti.js"></script>
+<script src="common.js"></script>
+<script>
+  var SYM = {
+    seven: '<div class="seven">7</div>',
+    bar: '<div class="bar">BAR</div>',
+    cherry: '<svg viewBox="0 0 100 100"><path d="M50 12 C46 34 34 48 28 62 M50 12 C58 36 66 48 72 60" stroke="#2e7d32" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M50 12 C62 8 74 14 80 22 C68 24 58 20 50 12Z" fill="#43a047"/><circle cx="28" cy="70" r="20" fill="#b3122e"/><circle cx="72" cy="68" r="20" fill="#b3122e"/><circle cx="22" cy="64" r="5" fill="#ff8aa0"/><circle cx="66" cy="62" r="5" fill="#ff8aa0"/></svg>',
+    diamond: '<svg viewBox="0 0 100 100"><path d="M20 38 L35 18 H65 L80 38 L50 86Z" fill="#4fc3f7"/><path d="M20 38 H80 L50 86Z" fill="#0288d1"/><path d="M35 18 L42 38 L50 18 L58 38 L65 18" fill="none" stroke="#e1f5fe" stroke-width="3"/><path d="M42 38 L50 86 L58 38" fill="none" stroke="#b3e5fc" stroke-width="3"/></svg>',
+    star: '<svg viewBox="0 0 100 100"><path d="M50 6l13 28 30 3-23 20 7 30-27-16-27 16 7-30L7 37l30-3z" fill="#c9a24a" stroke="#94702a" stroke-width="4" stroke-linejoin="round"/></svg>'
+  };
+  var order = ["seven", "cherry", "bar", "diamond", "star"], H = 318, N = 24;
+  document.querySelectorAll("[data-reel]").forEach(function (strip) {
+    var r = Number(strip.dataset.reel), html = "";
+    for (var i = 0; i < N; i++) html += '<div class="sym">' + SYM[i === N - 1 ? "star" : order[(i * 3 + r * 2) % order.length]] + "</div>";
+    strip.innerHTML = html;
+    strip.animate([{ transform: "translateY(0)", filter: "blur(0)" }, { filter: "blur(3px)", offset: 0.2 }, { filter: "blur(2px)", offset: 0.75 },
+      { transform: "translateY(" + -(N - 1) * H + "px)", filter: "blur(0)" }],
+      { duration: 2200 + r * 400, delay: 400, easing: "cubic-bezier(.3,.05,.2,1.02)", fill: "both" });
+  });
+  GP.ready();
+</script>
+</body></html>

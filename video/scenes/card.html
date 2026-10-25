@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Scheda</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  /* Layout "centro" */
+  .c-title{margin-top:34px;width:1600px}
+  .c-sub{margin-top:26px;width:1500px}
+  .c-points{margin-top:36px}
+  .c-note{margin-top:40px}
+  /* Layout "foto" */
+  .split{position:absolute;inset:0;display:flex;align-items:center;gap:70px}
+  .pic{flex:none;width:820px;height:600px;position:relative}
+  .pic::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border:2px solid rgba(201,162,74,.7)}
+  .pic div{position:absolute;inset:0;overflow:hidden;box-shadow:0 30px 70px -20px rgba(0,0,0,.8)}
+  .pic img{width:100%;height:100%;object-fit:cover}
+  .txt{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+  .txt .t-title{margin-top:28px;font-size:104px;width:100%}
+  .txt .t-sub{margin-top:20px;width:100%;font-size:46px}
+  .txt .t-points{margin-top:34px}
+  .txt .t-note{margin-top:40px}
+</style></head>
+<body data-duration="10" data-manual>
+<div class="stage">
+  <img class="photo" alt="">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="sparkles"></div>
+  <div class="content"></div>
+</div>
+<script src="contenuti.js"></script>
+<script src="common.js"></script>
+<script>
+  var id = new URLSearchParams(location.search).get("id");
+  var d = SCHEDE[id];
+  var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
+  var ph = document.querySelector(".photo");
+  if (d.foto && d.layout === "centro") ph.src = "../../site/foto/" + d.foto; else ph.remove();
+
+  var t = 0.4, parts = [];
+  function add(html, anim, step) { parts.push(html.replace("@", 'data-in="' + anim + " " + t.toFixed(2) + '"')); t += step; }
+  var C = document.querySelector(".content");
+
+  if (d.layout === "foto") {
+    var h = '<div class="split"><div class="pic" data-in="inLeft 0.3"><div><img src="../../site/foto/' + d.foto + '" alt=""></div></div><div class="txt">';
+    if (d.tag) add('<span class="t-tag" @>' + esc(d.tag) + "</span>", "inRight", 0.4);
+    add('<div class="t-title" data-fit="230" @><span class="shine">' + esc(d.titolo) + "</span></div>", "inRight", 0.6);
+    if (d.sotto) add('<div class="t-sub" data-fit="130" @>' + esc(d.sotto) + "</div>", "inRight", 0.5);
+    if (d.punti) { var li = ""; d.punti.forEach(function (p, i) { li += '<li data-in="inRight ' + (t + i * 0.35).toFixed(2) + '">' + esc(p) + "</li>"; }); parts.push('<ul class="t-points">' + li + "</ul>"); t += d.punti.length * 0.35 + 0.2; }
+    if (d.nota) add('<span class="t-note" @>' + esc(d.nota) + "</span>", "inUp", 0);
+    C.innerHTML = h + parts.join("") + "</div></div>";
+    document.querySelector(".pic img").animate([{ transform: "scale(1.02)" }, { transform: "scale(1.14)" }], { duration: 10000, fill: "both" });
+  } else {
+    if (d.tag) add('<span class="t-tag" @>' + esc(d.tag) + "</span>", "inZoom", 0.4);
+    add('<div class="t-title c-title" data-fit="240" @><span class="shine">' + esc(d.titolo) + "</span></div>", "inUp", 0.6);
+    if (d.sotto) add('<div class="t-sub c-sub" data-fit="140" @>' + esc(d.sotto) + "</div>", "inUp", 0.5);
+    if (d.punti) { var li2 = ""; d.punti.forEach(function (p, i) { li2 += '<li data-in="inUp ' + (t + i * 0.35).toFixed(2) + '">' + esc(p) + "</li>"; }); parts.push('<ul class="t-points c-points">' + li2 + "</ul>"); t += d.punti.length * 0.35 + 0.2; }
+    if (d.nota) add('<span class="t-note c-note" @>' + esc(d.nota) + "</span>", "inZoom", 0);
+    C.innerHTML = '<div class="center">' + parts.join("") + "</div>";
+  }
+  GP.ready();
+</script>
+</body></html>

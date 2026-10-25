@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Jackpot</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .coins{position:absolute;inset:0;z-index:-1;overflow:hidden}
+  .coin{position:absolute;top:-140px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3c4,#c9a24a 45%,#94702a 100%);
+    box-shadow:inset 0 0 0 6px rgba(148,112,42,.8),inset 0 0 0 10px rgba(255,243,196,.5);animation:fall linear infinite both}
+  .coin::after{content:"€";position:absolute;inset:0;display:grid;place-items:center;font:600 calc(var(--s) * .55)/1 var(--gp-serif);color:#94702a}
+  @keyframes fall{from{transform:translateY(0) rotateY(0deg)}to{transform:translateY(1300px) rotateY(720deg)}}
+  .panel{position:absolute;left:50%;top:30px;width:1380px;margin-left:-690px;height:440px;border-radius:36px;
+    background:linear-gradient(180deg,rgba(74,15,28,.96),rgba(30,8,16,.96));border:5px solid #c9a24a;box-shadow:0 0 0 14px rgba(18,6,10,.7),0 0 120px rgba(201,162,74,.35)}
+  .bulbs{position:absolute;inset:-32px;pointer-events:none}
+  .bulbs i{position:absolute;width:20px;height:20px;margin:-10px;border-radius:50%;background:#fff3c4;box-shadow:0 0 18px 6px rgba(255,214,110,.9);animation:bulb .5s steps(1) infinite both}
+  .bulbs i:nth-child(2n){animation-delay:-.25s}
+  @keyframes bulb{0%{opacity:1}50%{opacity:.18}}
+  .digits{position:absolute;left:0;right:0;top:50px;display:flex;justify-content:center;gap:14px}
+  .win{width:150px;height:200px;border-radius:14px;overflow:hidden;position:relative;background:#12060a;border:3px solid rgba(201,162,74,.6);
+    box-shadow:inset 0 18px 24px rgba(0,0,0,.8),inset 0 -18px 24px rgba(0,0,0,.8)}
+  .win .strip{position:absolute;left:0;right:0;top:0}
+  .win .strip div{height:200px;display:grid;place-items:center;font:600 160px/1 var(--gp-serif);color:#fff3c4}
+  .win .strip div:last-child{background:var(--gp-gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{position:absolute;left:40px;right:40px;top:285px;text-align:center;font:800 62px/1.1 var(--gp-sans);color:#fff}
+  .sub2{position:absolute;left:40px;right:40px;top:370px;text-align:center;font:800 26px/1 var(--gp-sans);letter-spacing:.4em;text-transform:uppercase;color:var(--gp-gold-light)}
+  .tagline{position:absolute;left:0;right:0;top:540px;text-align:center}
+</style></head>
+<body data-duration="11" data-manual>
+<div class="stage">
+  <img class="photo" src="../../site/foto/sala-vlt.jpg" alt="">
+  <div class="vignette"></div>
+  <div class="rays"></div>
+  <div class="coins"></div>
+  <div class="content">
+    <div class="panel" data-in="inZoom .2">
+      <div class="bulbs"></div>
+      <div class="digits" data-nocheck></div>
+      <div class="sub" data-fit="70" data-in="inUp 3.0">Jackpot progressivi sulle VLT</div>
+      <div class="sub2" data-in="inFade 3.7">Ogni giorno in sala</div>
+    </div>
+    <div class="tagline" data-in="inUp 4.4"><span class="t-note">Sala VLT · Tutti i giorni 10:00 – 03:00</span></div>
+  </div>
+</div>
+<script src="contenuti.js"></script>
+<script src="common.js"></script>
+<script>
+  var word = "JACKPOT", H = 200, N = 18, box = document.querySelector(".digits");
+  word.split("").forEach(function (ch, k) {
+    var html = "";
+    for (var i = 0; i < N - 1; i++) html += "<div>" + ((i * 7 + k * 3) % 10) + "</div>";
+    box.insertAdjacentHTML("beforeend", '<div class="win"><div class="strip">' + html + "<div>" + ch + "</div></div></div>");
+    box.lastChild.firstChild.animate([{ transform: "translateY(0)" }, { transform: "translateY(" + -(N - 1) * H + "px)" }],
+      { duration: 1400 + k * 200, delay: 600, easing: "cubic-bezier(.25,.1,.2,1.03)", fill: "both" });
+  });
+  var bulbs = document.querySelector(".bulbs"), W = 1444, Hh = 504, step = 56;
+  for (var x = 0; x <= W; x += step) { add(x, 0); add(x, Hh); }
+  for (var y = step; y < Hh; y += step) { add(0, y); add(W, y); }
+  function add(x, y) { var i = document.createElement("i"); i.style.left = x + "px"; i.style.top = y + "px"; bulbs.appendChild(i); }
+  var coins = document.querySelector(".coins");
+  for (var c = 0; c < 30; c++) {
+    var el = document.createElement("div"), s = 50 + rnd() * 70;
+    el.className = "coin";
+    el.style.cssText = "left:" + rnd() * 100 + "%;width:" + s + "px;height:" + s + "px;--s:" + s + "px;animation-duration:" +
+      (2.6 + rnd() * 2.4) + "s;animation-delay:" + -rnd() * 5 + "s;opacity:" + (0.5 + rnd() * 0.4);
+    coins.appendChild(el);
+  }
+  GP.ready();
+</script>
+</body></html>
