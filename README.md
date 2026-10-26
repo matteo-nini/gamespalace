@@ -23,7 +23,7 @@ ogni canale contiene sempre orari, informazioni e il messaggio di gioco responsa
 Per le TV vecchie, dove a ogni cambio file il lettore si blocca e mostra il nome in sovrimpressione:
 `TV-1-60min.mp4` … `TV-5-60min.mp4`, `BAR-60min.mp4`. Ogni file dura un'ora e a ogni giro le scene sono
 rimescolate (mai la stessa scena due volte di fila). Impostare sul lettore la ripetizione del singolo file.
-Sono file grandi (circa 1 GB): non sono su GitHub, si generano con `node render.mjs lunghi`
+Usano una codifica più leggera (circa 350 MB l'ora, qualità visivamente uguale). Non sono su GitHub (limite 100 MB per file): si generano con `node render.mjs lunghi`
 (la durata si cambia in `videos.json` → `lunghi.minuti`). Restano sotto i 4 GB, il limite delle chiavette FAT32.
 
 Codifica compatibile con TV e lettori USB datati: H.264 High@4.0, 1920×1080, 25 fps, senza audio.

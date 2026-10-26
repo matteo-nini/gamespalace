@@ -2,12 +2,12 @@
 //   node render.mjs              → tutte le scene, i canali TV e le immagini statiche
 //   node render.mjs jackpot      → solo le scene/immagini il cui nome contiene "jackpot" (i canali non vengono rimontati)
 //   node render.mjs canali       → rimonta solo i canali TV (e le versioni lunghe) dalle scene già renderizzate
-//   node render.mjs lunghi       → solo le versioni lunghe (es. 1 ora) dei canali, in out/lunghi/
+//   node render.mjs lunghi [min] → solo le versioni lunghe dei canali, in out/lunghi/ (durata da videos.json o in minuti)
 // Codifica pensata per TV e lettori USB datati: H.264 High@4.0, 25 fps, bitrate limitato, keyframe ogni 2 s.
 // Durante il render ogni testo visibile viene controllato: se esce dall'area sicura TV o dal suo riquadro, il render si ferma.
 // Richiede Playwright (Chromium) e ffmpeg.
 import { spawn } from "node:child_process";
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, statSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { createRequire } from "node:module";
@@ -94,9 +94,9 @@ await Promise.all(Array.from({ length: workers }, async () => {
 }));
 await browser.close();
 
-async function concat(names, out) {
+async function concat(names, out, from = OUT_SCENE) {
   const list = out + ".txt";
-  writeFileSync(list, names.map((n) => `file '${join(OUT_SCENE, n + ".mp4")}'`).join("\n"));
+  writeFileSync(list, names.map((n) => `file '${join(from, n + ".mp4")}'`).join("\n"));
   await ffmpeg(["-f", "concat", "-safe", "0", "-i", list, "-c", "copy", "-movflags", "+faststart", out]).done;
   rmSync(list);
 }
@@ -119,22 +119,36 @@ if (!filter || filter === "canali") {
 
 // Versioni lunghe: lo stesso canale ripetuto per N minuti in un unico file, con l'ordine delle scene
 // rimescolato a ogni giro (mai la stessa scena due volte di fila). Un solo file = nessun cambio video sulle TV.
-if ((!filter || onlyChannels) && lunghi) {
+// Usano copie "leggere" delle scene (2 passate a ~0,8 Mbps, qualità visivamente uguale): 1 ora ≈ 350 MB.
+const LIGHT = join(OUT, "scene-leggere");
+async function light(n) {
+  const src = join(OUT_SCENE, n + ".mp4"), dst = join(LIGHT, n + ".mp4");
+  if (existsSync(dst) && statSync(dst).mtimeMs > statSync(src).mtimeMs) return;
+  const common = ["-i", src, "-c:v", "libx264", "-preset", "slower", "-b:v", "780k", "-maxrate", "1600k", "-bufsize", "3200k",
+    "-profile:v", "high", "-level:v", "4.0", "-g", String(FPS * 2), "-pix_fmt", "yuv420p", "-an", "-passlogfile", join(LIGHT, n)];
+  await ffmpeg([...common, "-pass", "1", "-f", "null", "-"]).done;
+  await ffmpeg([...common, "-pass", "2", "-movflags", "+faststart", dst]).done;
+  for (const f of readdirSync(LIGHT)) if (f.startsWith(n + "-0.log")) rmSync(join(LIGHT, f));
+}
+const minuti = Number(process.argv[3]) || (lunghi && lunghi.minuti);
+if ((!filter || onlyChannels) && minuti) {
   const dir = join(OUT, "lunghi");
   mkdirSync(dir, { recursive: true });
+  mkdirSync(LIGHT, { recursive: true });
+  for (const n of new Set(canali.flatMap((c) => c.order))) await light(n);
   let seed = 11;
   const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
   for (const ch of canali) {
     for (const n of ch.order) if (!(n in durations)) await probe(n);
     const seq = []; let total = 0, order = [...ch.order];
-    while (total < lunghi.minuti * 60) {
+    while (total < minuti * 60) {
       for (const n of order) { seq.push(n); total += sceneDur(n); }
       do { // nuovo ordine: mescolato, senza ripetere l'ultima scena del giro precedente
         for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
       } while (order[0] === seq[seq.length - 1]);
     }
-    const out = join(dir, `${ch.name}-${lunghi.minuti}min.mp4`);
-    await concat(seq, out);
-    console.log(`${ch.name}-${lunghi.minuti}min.mp4 ok (${Math.round(total / 60)} min)`);
+    const out = join(dir, `${ch.name}-${minuti}min.mp4`);
+    await concat(seq, out, LIGHT);
+    console.log(`${ch.name}-${minuti}min.mp4 ok (${Math.round(total / 60)} min)`);
   }
 }
