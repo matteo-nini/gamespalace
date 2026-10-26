@@ -1,31 +1,223 @@
 {
   "scene": [
-    { "name": "apertura", "scene": "card.html", "params": { "id": "apertura" } },
-    { "name": "nuova-gestione", "scene": "card.html", "params": { "id": "nuova" } },
-    { "name": "orari", "scene": "orario.html" },
-    { "name": "sala-vlt-slot", "scene": "rulli.html" },
-    { "name": "jackpot", "scene": "jackpot.html" },
-    { "name": "galleria", "scene": "galleria.html" },
-    { "name": "vlt", "scene": "card.html", "params": { "id": "vlt" } },
-    { "name": "slot", "scene": "card.html", "params": { "id": "slot" } },
-    { "name": "bar", "scene": "card.html", "params": { "id": "bar" } },
-    { "name": "promo-caffe", "scene": "card.html", "params": { "id": "caffe" } },
-    { "name": "promozioni", "scene": "card.html", "params": { "id": "promozioni" } },
-    { "name": "aperitivo", "scene": "card.html", "params": { "id": "aperitivo" } },
-    { "name": "mattino", "scene": "card.html", "params": { "id": "mattino" } },
-    { "name": "notte", "scene": "card.html", "params": { "id": "notte" } },
-    { "name": "dove-siamo", "scene": "card.html", "params": { "id": "dove" } },
-    { "name": "accoglienza", "scene": "card.html", "params": { "id": "accoglienza" } },
-    { "name": "gioco-responsabile", "scene": "card.html", "params": { "id": "responsabile" } }
+    {
+      "name": "apertura",
+      "scene": "card.html",
+      "params": {
+        "id": "apertura"
+      }
+    },
+    {
+      "name": "nuova-gestione",
+      "scene": "card.html",
+      "params": {
+        "id": "nuova"
+      }
+    },
+    {
+      "name": "orari",
+      "scene": "orario.html"
+    },
+    {
+      "name": "sala-vlt-slot",
+      "scene": "rulli.html"
+    },
+    {
+      "name": "jackpot",
+      "scene": "jackpot.html"
+    },
+    {
+      "name": "galleria",
+      "scene": "galleria.html"
+    },
+    {
+      "name": "vlt",
+      "scene": "card.html",
+      "params": {
+        "id": "vlt"
+      }
+    },
+    {
+      "name": "slot",
+      "scene": "card.html",
+      "params": {
+        "id": "slot"
+      }
+    },
+    {
+      "name": "bar",
+      "scene": "card.html",
+      "params": {
+        "id": "bar"
+      }
+    },
+    {
+      "name": "promo-caffe",
+      "scene": "card.html",
+      "params": {
+        "id": "caffe"
+      }
+    },
+    {
+      "name": "promozioni",
+      "scene": "card.html",
+      "params": {
+        "id": "promozioni"
+      }
+    },
+    {
+      "name": "aperitivo",
+      "scene": "card.html",
+      "params": {
+        "id": "aperitivo"
+      }
+    },
+    {
+      "name": "mattino",
+      "scene": "card.html",
+      "params": {
+        "id": "mattino"
+      }
+    },
+    {
+      "name": "notte",
+      "scene": "card.html",
+      "params": {
+        "id": "notte"
+      }
+    },
+    {
+      "name": "dove-siamo",
+      "scene": "card.html",
+      "params": {
+        "id": "dove"
+      }
+    },
+    {
+      "name": "accoglienza",
+      "scene": "card.html",
+      "params": {
+        "id": "accoglienza"
+      }
+    },
+    {
+      "name": "gioco-responsabile",
+      "scene": "card.html",
+      "params": {
+        "id": "responsabile"
+      }
+    }
   ],
   "canali": [
-    { "name": "TV-1", "order": ["apertura", "vlt", "promo-caffe", "orari", "jackpot", "dove-siamo", "gioco-responsabile", "bar", "notte", "promozioni"] },
-    { "name": "TV-2", "order": ["sala-vlt-slot", "nuova-gestione", "promozioni", "galleria", "orari", "aperitivo", "gioco-responsabile", "slot", "dove-siamo", "promo-caffe"] },
-    { "name": "TV-3", "order": ["jackpot", "orari", "bar", "mattino", "apertura", "accoglienza", "gioco-responsabile", "vlt", "notte", "promozioni"] },
-    { "name": "TV-4", "order": ["galleria", "apertura", "slot", "jackpot", "dove-siamo", "promo-caffe", "gioco-responsabile", "sala-vlt-slot", "orari", "aperitivo"] }
+    {
+      "name": "TV-1",
+      "order": [
+        "apertura",
+        "vlt",
+        "promo-caffe",
+        "orari",
+        "jackpot",
+        "gioco-responsabile",
+        "bar",
+        "notte",
+        "promozioni",
+        "galleria"
+      ]
+    },
+    {
+      "name": "TV-2",
+      "order": [
+        "sala-vlt-slot",
+        "nuova-gestione",
+        "promozioni",
+        "galleria",
+        "orari",
+        "aperitivo",
+        "gioco-responsabile",
+        "slot",
+        "jackpot",
+        "promo-caffe"
+      ]
+    },
+    {
+      "name": "TV-3",
+      "order": [
+        "jackpot",
+        "orari",
+        "bar",
+        "mattino",
+        "apertura",
+        "accoglienza",
+        "gioco-responsabile",
+        "vlt",
+        "notte",
+        "promozioni"
+      ]
+    },
+    {
+      "name": "TV-4",
+      "order": [
+        "galleria",
+        "apertura",
+        "slot",
+        "jackpot",
+        "notte",
+        "promo-caffe",
+        "gioco-responsabile",
+        "sala-vlt-slot",
+        "orari",
+        "aperitivo"
+      ]
+    },
+    {
+      "name": "TV-5",
+      "order": [
+        "orari",
+        "sala-vlt-slot",
+        "accoglienza",
+        "promozioni",
+        "vlt",
+        "gioco-responsabile",
+        "nuova-gestione",
+        "jackpot",
+        "mattino",
+        "slot"
+      ]
+    },
+    {
+      "name": "BAR",
+      "order": [
+        "bar",
+        "promo-caffe",
+        "aperitivo",
+        "orari",
+        "mattino",
+        "accoglienza",
+        "gioco-responsabile",
+        "galleria",
+        "promozioni",
+        "nuova-gestione",
+        "notte",
+        "apertura"
+      ]
+    }
   ],
   "immagini": [
-    { "name": "sfondo-monitor", "scene": "sfondo.html", "at": 0.5 },
-    { "name": "sfondo-monitor-solo-logo", "scene": "sfondo.html", "at": 0.5, "params": { "info": "0" } }
-  ]
+    {
+      "name": "sfondo-monitor",
+      "scene": "sfondo.html",
+      "at": 0.5
+    },
+    {
+      "name": "sfondo-monitor-solo-logo",
+      "scene": "sfondo.html",
+      "at": 0.5,
+      "params": {
+        "info": "0"
+      }
+    }
+  ],
+  "lunghi": {
+    "minuti": 60
+  }
 }

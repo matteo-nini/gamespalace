@@ -14,12 +14,19 @@ Sito statico (HTML/CSS/JS, nessuna dipendenza, font inclusi in locale): si pubbl
 - Testi, telefono e orari sono in `site/index.html`.
 
 ## Video — `video/`
-Tutti i video sono MP4 1920×1080, 30 fps, H.264, senza audio.
+### Canali — `video/out/TV-1.mp4` … `TV-5.mp4` e `BAR.mp4`
+Sei montaggi diversi da mettere **in loop**: cinque per i televisori della sala e uno per lo schermo del bar
+(più centrato su bar, caffè e accoglienza). Le TV vicine non mostrano mai la stessa cosa nello stesso momento;
+ogni canale contiene sempre orari, informazioni e il messaggio di gioco responsabile.
 
-### Canali per le TV — `video/out/TV-1.mp4` … `TV-4.mp4`
-Quattro montaggi diversi (circa 1 minuto e 45 secondi ciascuno) da mettere **in loop**, uno per televisore:
-le TV vicine non mostrano mai la stessa cosa nello stesso momento. Ogni canale contiene sempre orari,
-informazioni e il messaggio di gioco responsabile.
+### Versioni lunghe (1 ora) — `video/out/lunghi/`
+Per le TV vecchie, dove a ogni cambio file il lettore si blocca e mostra il nome in sovrimpressione:
+`TV-1-60min.mp4` … `TV-5-60min.mp4`, `BAR-60min.mp4`. Ogni file dura un'ora e a ogni giro le scene sono
+rimescolate (mai la stessa scena due volte di fila). Impostare sul lettore la ripetizione del singolo file.
+Sono file grandi (circa 1 GB): non sono su GitHub, si generano con `node render.mjs lunghi`
+(la durata si cambia in `videos.json` → `lunghi.minuti`). Restano sotto i 4 GB, il limite delle chiavette FAT32.
+
+Codifica compatibile con TV e lettori USB datati: H.264 High@4.0, 1920×1080, 25 fps, senza audio.
 
 In ogni fotogramma restano sempre visibili:
 - in alto: logo e **Sala VLT & Slot · Nuova gestione**;
@@ -31,7 +38,7 @@ vanno mai a capo spezzando le parole: il renderer lo controlla su ogni scena e s
 
 ### Scene singole — `video/out/scene/`
 apertura · nuova-gestione · orari · sala-vlt-slot (rulli) · jackpot · galleria · vlt · slot · bar ·
-promo-caffe · promozioni · aperitivo · mattino · notte · dove-siamo · accoglienza · gioco-responsabile
+promo-caffe · promozioni · aperitivo · mattino · notte · dove-siamo (non usata nei canali) · accoglienza · gioco-responsabile
 
 ### Immagini statiche — `video/out/`
 `sfondo-monitor.png` (logo, Sala VLT & Slot, orari) e `sfondo-monitor-solo-logo.png`, in 4K (3840×2160).
@@ -40,9 +47,9 @@ promo-caffe · promozioni · aperitivo · mattino · notte · dove-siamo · acco
 - **Testi e info** (orari, indirizzo, telefono, testi di ogni scheda): `video/scenes/contenuti.js`.
 - **Nuova promo**: aggiungi una scheda in `contenuti.js` (layout `centro` o `foto`) e una riga in
   `video/videos.json` → `scene`, poi inseriscila in uno o più `canali`.
-- **Ordine dei canali TV**: `video/videos.json` → `canali`.
+- **Ordine dei canali**: `video/videos.json` → `canali`.
 - Rigenera con `cd video && node render.mjs` (Node.js, Playwright/Chromium e ffmpeg).
-  `node render.mjs canali` rimonta solo i canali senza rifare le scene.
+  `node render.mjs canali` rimonta canali e versioni lunghe senza rifare le scene.
 
 ## Da verificare prima della pubblicazione
 - Telefono `0587 291514` e indirizzo vengono dal vecchio sito: confermare che siano ancora validi con la nuova gestione.
